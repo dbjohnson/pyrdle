@@ -1,0 +1,2 @@
+# pyrdle
+Automatic Wordle Solver
