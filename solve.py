@@ -15,15 +15,24 @@ from selenium.webdriver.support import expected_conditions as EC
 
 
 def load_words():
-    # load valid word list
+    """
+    extract valid word list from javascript src
+    """
     script_text = requests.get(
         "https://www.powerlanguage.co.uk/wordle/main.e65ce0a5.js"
     ).text
     return {
         word
+        # minified variable names, in effect:
+        # La = possible solution words
+        # Ta = other legal words
+        # (some words are not easily searchable in a few guesses because of
+        #  many near neighbors; wordle source lists them separately.
+        #  We will include all legal in our search space)
+        for var in ('La', 'Ta')
         for word in json.loads(
             re.search(
-                'var La=(.*?])',
+                fr'\b{var}=(.*?])',
                 script_text
             ).groups()[0]
         )
