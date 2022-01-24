@@ -209,4 +209,15 @@ def solve(randomize_first_guess=False):
 
 
 if __name__ == '__main__':
-    solve(True)
+    import argparse
+
+    parser = argparse.ArgumentParser()
+    parser.add_argument(
+        '-r',
+        '--random',
+        help='randomize initial guess',
+        required=False,
+        default=False,
+        action='store_true'
+    )
+    solve(parser.parse_args().random)
