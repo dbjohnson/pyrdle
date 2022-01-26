@@ -189,7 +189,7 @@ def solve(randomize_first_guess=False):
     last_guess, grade = guesses[-1]
     solved = set(grade) == {'correct'}
     if solved:
-        print(f'solution "{"".join(last_guess)}" found in {len(guesses)} guesses!')
+        print(f'"{"".join(last_guess)}" found in {len(guesses)} guesses')
     else:
         print('Wah wah!')
 
